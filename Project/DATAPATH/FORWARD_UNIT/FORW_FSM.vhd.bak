@@ -1,0 +1,376 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use work.myTypes.all;
+
+entity FORW_FSM is 
+	generic ( 	OPCODE_SIZE: integer;
+			N_ADDR: integer);
+	port 	(	CLK : in std_logic; 
+			RST: in std_logic; 
+			CMP_A_EXE: in std_logic;
+			CMP_A_MEM: in std_logic;
+			CMP_B_EXE: in std_logic;
+			CMP_B_MEM: in std_logic;
+			CMP_C_EXE:  in std_logic;  -- CMP_B_MEM PIPED;	
+			CMP_C_MEM:  in std_logic; 
+			OPCODE_ID: in std_logic_vector(OPCODE_SIZE-1 downto 0); 
+			OPCODE_EXE: in std_logic_vector(OPCODE_SIZE-1 downto 0);
+			OPCODE_MEM: in std_logic_vector(OPCODE_SIZE-1 downto 0);
+			OPCODE_WB: in std_logic_vector(OPCODE_SIZE-1 downto 0);
+			MUX_A: out std_logic_vector(1 downto 0);
+			MUX_B: out std_logic_vector(1 downto 0);
+			MUX_C: out std_logic_vector(1 downto 0);
+			RST_DIV: out std_logic;
+			STALL: out std_logic);
+end FORW_FSM;
+	
+architecture BEHAVIORAL of FORW_FSM is
+
+		type A_STATES is (
+			NO_FORW_A,
+			FORW_ALU_MEM_A,	
+			FORW_ALU_WB_A,
+			FORW_MEM_WB_A,
+			STALL_A
+			);
+		type B_STATES is (
+			NO_FORW_B,
+			FORW_ALU_MEM_B,	
+			FORW_ALU_WB_B,
+			FORW_MEM_WB_B,
+			STALL_B
+			);
+		type C_STATES is (
+			NO_FORW_C,
+			FORW_ALU_WB_SW,
+			FORW_MEM_WB_SW,
+			FORW_REG_SW
+			);
+
+		signal CURRENT_STATE_A: A_STATES;
+		
+		signal CURRENT_STATE_B: B_STATES;
+		
+		signal CURRENT_STATE_C: C_STATES;
+
+		signal	STALL_A_SIG:	std_logic;
+		signal	STALL_B_SIG:	std_logic;
+		signal	STALL_INSTR:	std_logic;
+
+		signal	OPCODE_ID_INT:	integer;
+		signal	OPCODE_EXE_INT:	integer;
+		signal	OPCODE_MEM_INT:	integer;
+		signal	OPCODE_WB_INT:	integer;
+		signal  CNT_MUL:	integer;
+		signal  CNT_DIV:	integer;
+
+	begin
+
+	STALL <= STALL_A_SIG or STALL_B_SIG or STALL_INSTR;
+	OPCODE_ID_INT <= to_integer(unsigned(OPCODE_ID));
+	OPCODE_EXE_INT <= to_integer(unsigned(OPCODE_EXE));
+	OPCODE_MEM_INT <= to_integer(unsigned(OPCODE_MEM));
+	OPCODE_WB_INT <= to_integer(unsigned(OPCODE_WB));
+
+	A_STATE_PROC: process(CLK, RST, CURRENT_STATE_A, OPCODE_ID, OPCODE_EXE, OPCODE_MEM)
+		begin
+			if RST='1' then
+				CURRENT_STATE_A <= NO_FORW_A;
+			elsif rising_edge(CLK) then
+				case CURRENT_STATE_A is
+					when STALL_A =>
+						CURRENT_STATE_A <= FORW_MEM_WB_A;
+					when NO_FORW_A to FORW_MEM_WB_A =>
+						if OPCODE_ID = NTYPE_NOP then
+							CURRENT_STATE_A <= NO_FORW_A;
+						elsif (OPCODE_ID = "000000") then
+							CURRENT_STATE_A <= NO_FORW_A;
+						elsif (STALL_INSTR = '1') then
+							CURRENT_STATE_A <= CURRENT_STATE_A;
+						elsif OPCODE_ID = JTYPE_J then
+							CURRENT_STATE_A <= NO_FORW_A;
+						elsif CMP_A_EXE = '1' then 
+							if (OPCODE_ID = RTYPE) or ((OPCODE_ID_INT < 16) and (OPCODE_ID_INT > 7)) or (OPCODE_ID = LTYPE_LW) or (OPCODE_ID = STYPE_SW) or (OPCODE_ID = FTYPE_MULT) or (OPCODE_ID = FTYPE_DIV) then
+								if (OPCODE_EXE = RTYPE) or ((OPCODE_EXE_INT < 16) and (OPCODE_EXE_INT > 7)) then
+									CURRENT_STATE_A <= FORW_ALU_MEM_A;
+								--## MODIFICATION
+								elsif (OPCODE_EXE = FTYPE_MULT) or (OPCODE_EXE = FTYPE_DIV) then
+									if(CURRENT_STATE_A = STALL_A) or (CNT_MUL > 0) or (CNT_DIV > 0) or (CURRENT_STATE_B = STALL_B) then
+										CURRENT_STATE_A <= NO_FORW_A;
+									else
+										CURRENT_STATE_A <= FORW_ALU_MEM_A;
+									end if;
+								--## END MODIFICATION
+								elsif OPCODE_EXE = LTYPE_LW then
+									CURRENT_STATE_A <= STALL_A; -- FORWARDING SUCCESSIVO = MEM_WB_A
+								else
+									if CMP_A_MEM = '1' then
+										if (OPCODE_MEM = RTYPE) or ((OPCODE_MEM_INT < 16) and (OPCODE_MEM_INT > 7)) or (OPCODE_MEM = FTYPE_MULT) or(OPCODE_MEM = FTYPE_DIV) then
+											CURRENT_STATE_A <= FORW_ALU_WB_A;
+										elsif OPCODE_MEM = LTYPE_LW then
+											CURRENT_STATE_A <= FORW_MEM_WB_A;
+										else
+											CURRENT_STATE_A <= NO_FORW_A;
+										end if;	
+									else
+										CURRENT_STATE_A <= NO_FORW_A;
+									end if;
+								end if;
+							else
+								CURRENT_STATE_A <= NO_FORW_A;
+							end if;
+						elsif CMP_A_MEM = '1' then
+							if (OPCODE_ID = RTYPE) or ((OPCODE_ID_INT < 16) and (OPCODE_ID_INT > 7)) or (OPCODE_ID = LTYPE_LW) or (OPCODE_ID = STYPE_SW) or (OPCODE_ID = FTYPE_MULT) or (OPCODE_ID = FTYPE_DIV) then
+								if (OPCODE_MEM = RTYPE) or ((OPCODE_MEM_INT < 16) and (OPCODE_MEM_INT > 7)) or (OPCODE_MEM = FTYPE_MULT) or (OPCODE_MEM = FTYPE_DIV) then
+									CURRENT_STATE_A <= FORW_ALU_WB_A;
+								elsif OPCODE_MEM = LTYPE_LW then
+									CURRENT_STATE_A <= FORW_MEM_WB_A;
+								else
+									CURRENT_STATE_A <= NO_FORW_A;
+								end if;
+							else	
+								CURRENT_STATE_A <= NO_FORW_A;
+							end if;
+						else 
+							CURRENT_STATE_A <= NO_FORW_A;
+						end if;
+				when others => CURRENT_STATE_A <= NO_FORW_A;
+				end case;
+			end if;
+		end process;
+	
+	B_STATE_PROC: process(CLK, RST, CURRENT_STATE_B, OPCODE_ID, OPCODE_EXE, OPCODE_MEM)
+		begin
+			if RST='1' then
+				CURRENT_STATE_B <= NO_FORW_B;
+			elsif rising_edge(CLK) then
+				case CURRENT_STATE_B is
+					when STALL_B =>
+						CURRENT_STATE_B <= FORW_MEM_WB_B;
+					when NO_FORW_B to FORW_MEM_WB_B  =>
+						if OPCODE_ID = NTYPE_NOP then
+							CURRENT_STATE_B <= NO_FORW_B;
+						elsif (OPCODE_ID = "000000") then
+							CURRENT_STATE_B <= NO_FORW_B;
+						elsif (STALL_INSTR = '1') then
+							CURRENT_STATE_B <= CURRENT_STATE_B;
+						elsif OPCODE_ID = JTYPE_J then
+							CURRENT_STATE_B <= NO_FORW_B;
+						elsif CMP_B_EXE = '1' then
+							if (OPCODE_ID = RTYPE) or (OPCODE_ID = FTYPE_MULT) or(OPCODE_ID = FTYPE_DIV) then
+								if (OPCODE_EXE = RTYPE) or ((OPCODE_EXE_INT < 16) and (OPCODE_EXE_INT > 7)) then  -- MUL AND DIV TOLTE
+									CURRENT_STATE_B <= FORW_ALU_MEM_B;
+								elsif (OPCODE_EXE = FTYPE_MULT) or (OPCODE_EXE = FTYPE_DIV) then
+									if(CURRENT_STATE_B = STALL_B) or (CNT_MUL > 0) or (CNT_DIV > 0) or (CURRENT_STATE_B = STALL_B) then
+										CURRENT_STATE_B <= NO_FORW_B;
+									else
+										CURRENT_STATE_B <= FORW_ALU_MEM_B;
+									end if;
+								elsif OPCODE_EXE = LTYPE_LW then 
+									CURRENT_STATE_B <= STALL_B; -- AFTER: mem_wb_B
+								else
+									if CMP_B_MEM = '1' then
+										if (OPCODE_MEM = RTYPE) or ((OPCODE_MEM_INT < 16) and (OPCODE_MEM_INT > 7)) or ( OPCODE_MEM = FTYPE_MULT ) or (OPCODE_MEM = FTYPE_DIV) then
+											CURRENT_STATE_B <= FORW_ALU_WB_B;
+										elsif OPCODE_MEM = LTYPE_LW then
+											CURRENT_STATE_B <= FORW_MEM_WB_B;
+										else 
+											CURRENT_STATE_B <= NO_FORW_B; -- NOP STATE C
+										end if;
+									else	
+										CURRENT_STATE_B <= NO_FORW_B; 
+									end if;
+								end if;
+							else
+								CURRENT_STATE_B <= NO_FORW_B;
+							end if;
+						elsif CMP_B_MEM = '1' then
+							if (OPCODE_ID = RTYPE) or (OPCODE_ID = FTYPE_DIV) or (OPCODE_ID = FTYPE_MULT) then
+								if (OPCODE_MEM = RTYPE) or ((OPCODE_MEM_INT < 16) and (OPCODE_MEM_INT > 7)) or (OPCODE_MEM = FTYPE_MULT) or (OPCODE_MEM = FTYPE_DIV) then
+									CURRENT_STATE_B <= FORW_ALU_WB_B;
+								elsif OPCODE_MEM = LTYPE_LW then
+									CURRENT_STATE_B <= FORW_MEM_WB_B;
+								else 
+									CURRENT_STATE_B <= NO_FORW_B; -- NOP STATE C
+								end if;
+							else
+								CURRENT_STATE_B <= NO_FORW_B;
+							end if;
+						else 
+							CURRENT_STATE_B <= NO_FORW_B;
+						end if;
+				when others => CURRENT_STATE_B <= NO_FORW_B;
+				end case;
+			end if;
+		end process; 
+
+C_STATE_PROC: process(CLK, RST, CURRENT_STATE_C, OPCODE_MEM)
+		begin
+			if RST='1' then
+				CURRENT_STATE_C <= NO_FORW_C;
+			elsif rising_edge(CLK) then
+				case CURRENT_STATE_C is
+				when NO_FORW_C to FORW_REG_SW =>
+					if CMP_C_EXE = '1' then			--IT'S THE PIPELINED CMP
+						if OPCODE_EXE = STYPE_SW then
+							if (OPCODE_MEM = RTYPE) or ((OPCODE_MEM_INT < 16) and (OPCODE_MEM_INT > 7)) or (OPCODE_MEM = FTYPE_MULT) or (OPCODE_MEM = FTYPE_DIV) then
+								CURRENT_STATE_C <= FORW_ALU_WB_SW;
+							elsif OPCODE_MEM  = LTYPE_LW then
+								CURRENT_STATE_C <= FORW_MEM_WB_SW;
+							else
+								CURRENT_STATE_C <= NO_FORW_C;
+							end if;
+						else
+							CURRENT_STATE_C  <= NO_FORW_C;
+						end if;
+					elsif CMP_C_MEM = '1' then
+						if OPCODE_EXE = STYPE_SW then
+							if (OPCODE_WB = RTYPE) or ((OPCODE_WB_INT < 16) and (OPCODE_WB_INT > 7)) or (OPCODE_WB = FTYPE_MULT) or (OPCODE_WB = FTYPE_DIV) then
+								CURRENT_STATE_C <= FORW_REG_SW;
+							elsif OPCODE_WB  = LTYPE_LW then
+								CURRENT_STATE_C <= FORW_REG_SW;
+							else
+								CURRENT_STATE_C <= NO_FORW_C;
+							end if;
+						else
+							CURRENT_STATE_C  <= NO_FORW_C;
+						end if;
+					else
+						CURRENT_STATE_C  <= NO_FORW_C;
+					end if;
+				end case;
+			end if;
+		end process;
+				
+STALL_INSTR_PROC: process(CLK, RST, OPCODE_ID)
+		begin
+		if RST = '1' then
+			STALL_INSTR <= '0';
+			CNT_MUL <= 0;
+			CNT_DIV <= 0;
+			RST_DIV <= '1';
+		else
+			if rising_edge(CLK) then
+				if (CNT_MUL > 0) then
+					if(CNT_MUL = 2) then
+						CNT_MUL <= 0;
+						STALL_INSTR <= '0';
+					else
+						CNT_MUL <= CNT_MUL + 1;
+					end if;
+				elsif (CNT_DIV > 0) then
+					if (OPCODE_EXE = FTYPE_DIV)
+					    STALL_INSTR <= '1';
+					end if;
+					RST_DIV <= '0';
+					if(CNT_DIV = 19) then
+						CNT_DIV <= 0;
+						STALL_INSTR <= '0';
+						RST_DIV <= '1';
+					else
+						CNT_DIV <= CNT_DIV + 1;
+					end if;
+				else  -- ##MODIFICATION
+					if ((CMP_A_EXE = '1') or (CMP_B_EXE = '1')) and (OPCODE_EXE = LTYPE_LW) then
+						STALL_INSTR <= '0';
+						if (OPCODE_ID = FTYPE_MULT) then
+							CNT_MUL <= 0;
+						elsif (OPCODE_ID = FTYPE_DIV) then
+							RST_DIV <= '1';
+							CNT_DIV <= 0;
+						else
+							CNT_MUL <= 0;
+							CNT_DIV <= 0;
+						end if;
+					else
+						if (OPCODE_ID = FTYPE_MULT) then
+							CNT_MUL <= CNT_MUL + 1;
+							STALL_INSTR <= '1';
+						elsif (OPCODE_ID = FTYPE_DIV) then
+							CNT_DIV <= CNT_DIV + 1;
+							RST_DIV <= '0';    -- 
+							STALL_INSTR <= '1';
+						else
+							CNT_DIV <= 0;
+							CNT_MUL <= 0;
+							STALL_INSTR <= '0';
+						end if;
+					end if;
+				end if;
+			end if;
+		end if;
+end process STALL_INSTR_PROC;
+
+-- DIV_STALL_PROC: process (CLK, RST, OPCODE_ID)
+-- 	begin	
+-- 		if RST = '1' then
+-- 			STALL_INSTR <= '0';
+-- 			CNT_DIV <= 0;
+-- 		elsif rising_edge(CLK) then
+-- 				if (CNT_DIV > 0) then
+-- 					RST_DIV <= '0';
+-- 					if(CNT_DIV = 35) then
+-- 						CNT_DIV <= 0;
+-- 						STALL_INSTR <= '0';
+-- 					else
+-- 						CNT_DIV <= CNT_DIV + 1;
+-- 					end if;
+-- 				elsif(OPCODE_ID = FTYPE_DIV) then
+-- 							RST_DIV <= '1';
+-- 							CNT_DIV <= CNT_DIV + 1;
+-- 							STALL_INSTR <= '1';
+-- 				end if;
+-- 		end if;
+-- end process DIV_STALL_PROC;
+			
+		
+				
+OUT_PROC: process (CURRENT_STATE_A, CURRENT_STATE_B, CURRENT_STATE_C) 
+	 begin
+			case CURRENT_STATE_A is
+				when NO_FORW_A 		=> MUX_A <= "11";
+							STALL_A_SIG <= '0';
+				when FORW_ALU_MEM_A 	=> MUX_A <= "10";
+							STALL_A_SIG <= '0';
+				when FORW_ALU_WB_A 	=> MUX_A <= "01";
+							STALL_A_SIG <= '0';
+				when FORW_MEM_WB_A	=> MUX_A <= "00";
+							STALL_A_SIG <= '0';
+				when STALL_A 		=> MUX_A <= "11";
+							STALL_A_SIG <= '1';
+			end case;
+			
+			case CURRENT_STATE_B is 
+				when NO_FORW_B		=> MUX_B <= "11";
+							STALL_B_SIG <= '0';
+				when FORW_ALU_MEM_B	=> MUX_B <= "10";
+							STALL_B_SIG <= '0';
+				when FORW_ALU_WB_B	=> MUX_B <= "01";
+							STALL_B_SIG <= '0';
+				when FORW_MEM_WB_B	=> MUX_B <= "00";
+							STALL_B_SIG <= '0';
+				when STALL_B		=> MUX_B <= "11";
+							STALL_B_SIG <= '1';
+				
+			end case;
+	
+			case CURRENT_STATE_C is 
+				when NO_FORW_C		=> MUX_C <= "11";
+				when FORW_ALU_WB_SW	=> MUX_C <= "10";
+				when FORW_MEM_WB_SW	=> MUX_C <= "01";
+				when FORW_REG_SW	=> MUX_C <= "00";
+		
+			end case;
+	end process OUT_PROC;
+
+end BEHAVIORAL;
+			
+configuration CFG_FORW_FSM_BEHAVIORAL of FORW_FSM is
+	for BEHAVIORAL
+	end for;
+end CFG_FORW_FSM_BEHAVIORAL;
+
+		
+
+		

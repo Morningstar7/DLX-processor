@@ -1,0 +1,483 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 26 01:48:30 2015
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: DATAPATH_INST/FORW_INST/FSM_FORWARD/CURRENT_STATE_B_reg[2]
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/Q_reg
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX                0K_hvratio_1_4        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  DATAPATH_INST/FORW_INST/FSM_FORWARD/CURRENT_STATE_B_reg[2]/CK (DFFR_X1)
+                                                          0.00 #     0.00 r
+  DATAPATH_INST/FORW_INST/FSM_FORWARD/CURRENT_STATE_B_reg[2]/Q (DFFR_X1)
+                                                          0.11       0.11 r
+  DATAPATH_INST/FORW_INST/FSM_FORWARD/U7/ZN (AOI21_X2)
+                                                          0.02       0.12 f
+  DATAPATH_INST/FORW_INST/FSM_FORWARD/MUX_B[1] (FORW_FSM_OPCODE_SIZE6_N_ADDR5)
+                                                          0.00       0.12 f
+  DATAPATH_INST/FORW_INST/MUX_B[1] (FORWARD_UNIT_OPCODE_SIZE6_N_ADDR5)
+                                                          0.00       0.12 f
+  DATAPATH_INST/INST_EXECUTE/OP_SEL_B[1] (EXECUTE_N32_N_ADDR5_ALUSIZE5)
+                                                          0.00       0.12 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/SEL[1] (MUX51_GEN_N32_0)
+                                                          0.00       0.12 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U20/ZN (AND2_X2)
+                                                          0.03       0.15 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U34/ZN (NAND2_X1)
+                                                          0.02       0.17 r
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U38/ZN (INV_X1)
+                                                          0.01       0.19 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U10/Z (BUF_X4)
+                                                          0.03       0.21 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U44/ZN (NAND2_X1)
+                                                          0.01       0.23 r
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U5/ZN (AND2_X1)
+                                                          0.05       0.27 r
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/U15/ZN (NAND3_X4)
+                                                          0.03       0.30 f
+  DATAPATH_INST/INST_EXECUTE/OP_B_SEL_MUX/Y[1] (MUX51_GEN_N32_0)
+                                                          0.00       0.30 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/IN_B[1] (ALU_N32_ALU_SIZE5)
+                                                          0.00       0.30 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/B[1] (BOOTHMUL)
+                                                          0.00       0.30 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/B[1] (BOOTHMUL_COMP_1)
+                                                          0.00       0.30 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/TO_ENC[0] (BOOTH_ENCODER_7)
+                                                          0.00       0.30 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/U8/ZN (INV_X1)
+                                                          0.02       0.32 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/U9/ZN (NAND3_X1)
+                                                          0.02       0.34 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/U3/ZN (INV_X1)
+                                                          0.01       0.36 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/U1/ZN (INV_X1)
+                                                          0.01       0.37 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/ENCODERS_1/ENC[2] (BOOTH_ENCODER_7)
+                                                          0.00       0.37 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/SEL[2] (MUX51_GEN_N19_7)
+                                                          0.00       0.37 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U20/ZN (AND2_X1)
+                                                          0.03       0.40 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U3/ZN (NAND2_X1)
+                                                          0.02       0.43 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U6/ZN (NAND2_X1)
+                                                          0.01       0.44 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U5/ZN (NOR2_X1)
+                                                          0.05       0.49 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U51/ZN (AOI22_X1)
+                                                          0.02       0.51 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/U14/ZN (NAND3_X1)
+                                                          0.03       0.53 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/MUX_INST_1/Y[1] (MUX51_GEN_N19_7)
+                                                          0.00       0.53 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/B[1] (RCA_GEN_NO_C_N19_0)
+                                                          0.00       0.53 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/B (FA_190)
+                                                          0.00       0.53 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/XOR_GATE_1/B (XOR_GATE_1_386)
+                                                          0.00       0.53 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/XOR_GATE_1/U3/ZN (INV_X1)
+                                                          0.01       0.54 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/XOR_GATE_1/U2/ZN (NAND2_X1)
+                                                          0.02       0.56 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/XOR_GATE_1/U1/ZN (NAND2_X2)
+                                                          0.02       0.58 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/XOR_GATE_1/Y (XOR_GATE_1_386)
+                                                          0.00       0.58 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/AND_GATE_2/A (AND_GATE_1_385)
+                                                          0.00       0.58 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       0.60 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/AND_GATE_2/Y (AND_GATE_1_385)
+                                                          0.00       0.60 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/OR_GATE_1/B (OR_GATE_190)
+                                                          0.00       0.60 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       0.64 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/OR_GATE_1/Y (OR_GATE_190)
+                                                          0.00       0.64 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_0/Co (FA_190)
+                                                          0.00       0.64 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/Ci (FA_189)
+                                                          0.00       0.64 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/AND_GATE_2/B (AND_GATE_1_383)
+                                                          0.00       0.64 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/AND_GATE_2/U1/ZN (AND2_X2)
+                                                          0.03       0.67 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/AND_GATE_2/Y (AND_GATE_1_383)
+                                                          0.00       0.67 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/OR_GATE_1/B (OR_GATE_189)
+                                                          0.00       0.67 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/OR_GATE_1/U1/ZN (OR2_X2)
+                                                          0.04       0.71 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/OR_GATE_1/Y (OR_GATE_189)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_1/Co (FA_189)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/Ci (FA_188)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/AND_GATE_2/B (AND_GATE_1_381)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/AND_GATE_2/U1/ZN (AND2_X2)
+                                                          0.03       0.74 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/AND_GATE_2/Y (AND_GATE_1_381)
+                                                          0.00       0.74 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/OR_GATE_1/B (OR_GATE_188)
+                                                          0.00       0.74 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       0.78 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/OR_GATE_1/Y (OR_GATE_188)
+                                                          0.00       0.78 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_2/Co (FA_188)
+                                                          0.00       0.78 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/Ci (FA_187)
+                                                          0.00       0.78 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/AND_GATE_2/B (AND_GATE_1_379)
+                                                          0.00       0.78 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.81 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/AND_GATE_2/Y (AND_GATE_1_379)
+                                                          0.00       0.81 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/OR_GATE_1/B (OR_GATE_187)
+                                                          0.00       0.81 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/OR_GATE_1/U1/ZN (OR2_X2)
+                                                          0.04       0.85 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/OR_GATE_1/Y (OR_GATE_187)
+                                                          0.00       0.85 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_3/Co (FA_187)
+                                                          0.00       0.85 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/Ci (FA_186)
+                                                          0.00       0.85 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/AND_GATE_2/B (AND_GATE_1_377)
+                                                          0.00       0.85 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       0.88 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/AND_GATE_2/Y (AND_GATE_1_377)
+                                                          0.00       0.88 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/OR_GATE_1/B (OR_GATE_186)
+                                                          0.00       0.88 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       0.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/OR_GATE_1/Y (OR_GATE_186)
+                                                          0.00       0.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_4/Co (FA_186)
+                                                          0.00       0.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/Ci (FA_185)
+                                                          0.00       0.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/AND_GATE_2/B (AND_GATE_1_375)
+                                                          0.00       0.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/AND_GATE_2/U1/ZN (AND2_X2)
+                                                          0.03       0.95 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/AND_GATE_2/Y (AND_GATE_1_375)
+                                                          0.00       0.95 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/OR_GATE_1/B (OR_GATE_185)
+                                                          0.00       0.95 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       0.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/OR_GATE_1/Y (OR_GATE_185)
+                                                          0.00       0.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_5/Co (FA_185)
+                                                          0.00       0.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/Ci (FA_184)
+                                                          0.00       0.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/AND_GATE_2/B (AND_GATE_1_373)
+                                                          0.00       0.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.01 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/AND_GATE_2/Y (AND_GATE_1_373)
+                                                          0.00       1.01 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/OR_GATE_1/B (OR_GATE_184)
+                                                          0.00       1.01 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.05 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/OR_GATE_1/Y (OR_GATE_184)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_6/Co (FA_184)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/Ci (FA_183)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/AND_GATE_2/B (AND_GATE_1_371)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.08 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/AND_GATE_2/Y (AND_GATE_1_371)
+                                                          0.00       1.08 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/OR_GATE_1/B (OR_GATE_183)
+                                                          0.00       1.08 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.12 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/OR_GATE_1/Y (OR_GATE_183)
+                                                          0.00       1.12 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_7/Co (FA_183)
+                                                          0.00       1.12 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/Ci (FA_182)
+                                                          0.00       1.12 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/AND_GATE_2/B (AND_GATE_1_369)
+                                                          0.00       1.12 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.15 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/AND_GATE_2/Y (AND_GATE_1_369)
+                                                          0.00       1.15 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/OR_GATE_1/B (OR_GATE_182)
+                                                          0.00       1.15 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.19 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/OR_GATE_1/Y (OR_GATE_182)
+                                                          0.00       1.19 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_8/Co (FA_182)
+                                                          0.00       1.19 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/Ci (FA_181)
+                                                          0.00       1.19 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/AND_GATE_2/B (AND_GATE_1_367)
+                                                          0.00       1.19 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.21 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/AND_GATE_2/Y (AND_GATE_1_367)
+                                                          0.00       1.21 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/OR_GATE_1/B (OR_GATE_181)
+                                                          0.00       1.21 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.25 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/OR_GATE_1/Y (OR_GATE_181)
+                                                          0.00       1.25 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_9/Co (FA_181)
+                                                          0.00       1.25 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/Ci (FA_180)
+                                                          0.00       1.25 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/AND_GATE_2/B (AND_GATE_1_365)
+                                                          0.00       1.25 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.28 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/AND_GATE_2/Y (AND_GATE_1_365)
+                                                          0.00       1.28 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/OR_GATE_1/B (OR_GATE_180)
+                                                          0.00       1.28 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.32 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/OR_GATE_1/Y (OR_GATE_180)
+                                                          0.00       1.32 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_10/Co (FA_180)
+                                                          0.00       1.32 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/Ci (FA_179)
+                                                          0.00       1.32 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/AND_GATE_2/B (AND_GATE_1_363)
+                                                          0.00       1.32 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.35 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/AND_GATE_2/Y (AND_GATE_1_363)
+                                                          0.00       1.35 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/OR_GATE_1/B (OR_GATE_179)
+                                                          0.00       1.35 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.39 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/OR_GATE_1/Y (OR_GATE_179)
+                                                          0.00       1.39 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_11/Co (FA_179)
+                                                          0.00       1.39 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/Ci (FA_178)
+                                                          0.00       1.39 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/AND_GATE_2/B (AND_GATE_1_361)
+                                                          0.00       1.39 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.41 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/AND_GATE_2/Y (AND_GATE_1_361)
+                                                          0.00       1.41 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/OR_GATE_1/B (OR_GATE_178)
+                                                          0.00       1.41 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.45 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/OR_GATE_1/Y (OR_GATE_178)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_12/Co (FA_178)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/Ci (FA_177)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/AND_GATE_2/B (AND_GATE_1_359)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/AND_GATE_2/U1/ZN (AND2_X2)
+                                                          0.03       1.48 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/AND_GATE_2/Y (AND_GATE_1_359)
+                                                          0.00       1.48 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/OR_GATE_1/B (OR_GATE_177)
+                                                          0.00       1.48 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.52 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/OR_GATE_1/Y (OR_GATE_177)
+                                                          0.00       1.52 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_13/Co (FA_177)
+                                                          0.00       1.52 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/Ci (FA_176)
+                                                          0.00       1.52 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/AND_GATE_2/B (AND_GATE_1_357)
+                                                          0.00       1.52 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.55 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/AND_GATE_2/Y (AND_GATE_1_357)
+                                                          0.00       1.55 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/OR_GATE_1/B (OR_GATE_176)
+                                                          0.00       1.55 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.59 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/OR_GATE_1/Y (OR_GATE_176)
+                                                          0.00       1.59 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_14/Co (FA_176)
+                                                          0.00       1.59 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/Ci (FA_175)
+                                                          0.00       1.59 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/AND_GATE_2/B (AND_GATE_1_355)
+                                                          0.00       1.59 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.62 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/AND_GATE_2/Y (AND_GATE_1_355)
+                                                          0.00       1.62 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/OR_GATE_1/B (OR_GATE_175)
+                                                          0.00       1.62 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.66 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/OR_GATE_1/Y (OR_GATE_175)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_15/Co (FA_175)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/Ci (FA_174)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/AND_GATE_2/B (AND_GATE_1_353)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.69 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/AND_GATE_2/Y (AND_GATE_1_353)
+                                                          0.00       1.69 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/OR_GATE_1/B (OR_GATE_174)
+                                                          0.00       1.69 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.73 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/OR_GATE_1/Y (OR_GATE_174)
+                                                          0.00       1.73 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_16/Co (FA_174)
+                                                          0.00       1.73 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/Ci (FA_173)
+                                                          0.00       1.73 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/XOR_GATE_2/B (XOR_GATE_1_351)
+                                                          0.00       1.73 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/XOR_GATE_2/U5/ZN (INV_X1)
+                                                          0.01       1.74 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/XOR_GATE_2/U3/ZN (NAND2_X1)
+                                                          0.02       1.76 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/XOR_GATE_2/U1/ZN (NAND2_X2)
+                                                          0.03       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/XOR_GATE_2/Y (XOR_GATE_1_351)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/FAI_17/S (FA_173)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_0/S[18] (RCA_GEN_NO_C_N19_0)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/A[16] (RCA_GEN_NO_C_N19_6)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/A (FA_157)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/XOR_GATE_1/A (XOR_GATE_1_319)
+                                                          0.00       1.79 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/XOR_GATE_1/U4/ZN (INV_X1)
+                                                          0.01       1.79 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/XOR_GATE_1/U2/ZN (NAND2_X1)
+                                                          0.01       1.81 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/XOR_GATE_1/U1/ZN (NAND2_X1)
+                                                          0.02       1.83 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/XOR_GATE_1/Y (XOR_GATE_1_319)
+                                                          0.00       1.83 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/AND_GATE_2/A (AND_GATE_1_318)
+                                                          0.00       1.83 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.86 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/AND_GATE_2/Y (AND_GATE_1_318)
+                                                          0.00       1.86 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/OR_GATE_1/B (OR_GATE_157)
+                                                          0.00       1.86 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.90 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/OR_GATE_1/Y (OR_GATE_157)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_15/Co (FA_157)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/Ci (FA_156)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/AND_GATE_2/B (AND_GATE_1_316)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/AND_GATE_2/U1/ZN (AND2_X4)
+                                                          0.03       1.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/AND_GATE_2/Y (AND_GATE_1_316)
+                                                          0.00       1.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/OR_GATE_1/B (OR_GATE_156)
+                                                          0.00       1.92 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/OR_GATE_1/U1/ZN (OR2_X4)
+                                                          0.04       1.96 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/OR_GATE_1/Y (OR_GATE_156)
+                                                          0.00       1.96 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_16/Co (FA_156)
+                                                          0.00       1.96 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/Ci (FA_155)
+                                                          0.00       1.96 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/XOR_GATE_2/B (XOR_GATE_1_314)
+                                                          0.00       1.96 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/XOR_GATE_2/U2/ZN (INV_X1)
+                                                          0.01       1.97 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/XOR_GATE_2/U1/ZN (XNOR2_X1)
+                                                          0.01       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/XOR_GATE_2/Y (XOR_GATE_1_314)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/FAI_17/S (FA_155)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/RCA_INST_1_1/S[18] (RCA_GEN_NO_C_N19_6)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/COMP_1/P[20] (BOOTHMUL_COMP_1)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/D[16] (REG_N17_0)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/D (FD_124)
+                                                          0.00       1.99 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/U3/Z (MUX2_X2)
+                                                          0.05       2.04 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/U5/ZN (NAND2_X1)
+                                                          0.01       2.06 r
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/U6/ZN (INV_X1)
+                                                          0.01       2.06 f
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/Q_reg/D (DFF_X1)
+                                                          0.00       2.06 f
+  data arrival time                                                  2.06
+
+  clock CLK (rise edge)                                   2.10       2.10
+  clock network delay (ideal)                             0.00       2.10
+  DATAPATH_INST/INST_EXECUTE/ALUCOMP/MULT_INST/PIPE_1_1/FF_16/Q_reg/CK (DFF_X1)
+                                                          0.00       2.10 r
+  library setup time                                     -0.04       2.06
+  data required time                                                 2.06
+  --------------------------------------------------------------------------
+  data required time                                                 2.06
+  data arrival time                                                 -2.06
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

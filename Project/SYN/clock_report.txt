@@ -1,0 +1,25 @@
+Warning: Design 'DLX' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating design information... (UID-85)
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/ZN 
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/ZN 
+ 
+****************************************
+Report : clocks
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 19 18:22:50 2015
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+CLK              2.00   {0 1}                         {CLK}
+--------------------------------------------------------------------------------
+1

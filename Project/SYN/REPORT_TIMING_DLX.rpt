@@ -1,0 +1,51 @@
+Warning: Design 'DLX' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating design information... (UID-85)
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/ZN 
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/ZN 
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 19 20:38:50 2015
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: DATAPATH_INST/INST_FETCH/PC/FF_7/Q_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: ADDR[7] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  DATAPATH_INST/INST_FETCH/PC/FF_7/Q_reg/CK (DFF_X1)      0.00       0.00 r
+  DATAPATH_INST/INST_FETCH/PC/FF_7/Q_reg/QN (DFF_X1)      0.09       0.09 f
+  DATAPATH_INST/INST_FETCH/PC/FF_7/U3/ZN (INV_X8)         0.19       0.28 r
+  DATAPATH_INST/INST_FETCH/PC/FF_7/Q (FD_1_123)           0.00       0.28 r
+  DATAPATH_INST/INST_FETCH/PC/Q[7] (REG_N32_2)            0.00       0.28 r
+  DATAPATH_INST/INST_FETCH/INSTRUCTION_CACHE/ADDR[7] (CACHE_N32_TAG_BIT23_SET_BIT4_N_DATA5)
+                                                          0.00       0.28 r
+  DATAPATH_INST/INST_FETCH/INSTRUCTION_CACHE/ADDR_OUT[7] (CACHE_N32_TAG_BIT23_SET_BIT4_N_DATA5)
+                                                          0.00       0.28 r
+  DATAPATH_INST/INST_FETCH/ADDR_IRAM[7] (FETCH_N32)       0.00       0.28 r
+  DATAPATH_INST/ADDR_IRAM[7] (DATAPATH_N32_N_ADDR5_IMM_SIZE16_OP_CODE_SIZE6_M5_ALUSIZE5)
+                                                          0.00       0.28 r
+  ADDR[7] (out)                                           0.01       0.29 r
+  data arrival time                                                  0.29
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

@@ -1,0 +1,21 @@
+Warning: Design 'DLX' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : clocks
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 19 16:13:21 2015
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+CLK              2.00   {0 1}                         {CLK}
+--------------------------------------------------------------------------------
+1

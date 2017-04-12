@@ -1,0 +1,12 @@
+Warning: Design 'DLX' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : clocks
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 19 20:39:26 2015
+****************************************
+
+No clocks in this design.
+
+1

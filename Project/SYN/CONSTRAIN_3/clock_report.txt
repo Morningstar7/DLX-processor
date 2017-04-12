@@ -1,0 +1,25 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'DLX' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_B_11/NOR_1/U1/ZN 
+Information: Timing loop detected. (OPT-150)
+	DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_2/U1/ZN DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/A1 DATAPATH_INST/INST_EXECUTE/ALUCOMP/LATCH_P4_A_11/NOR_1/U1/ZN 
+ 
+****************************************
+Report : clocks
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Mon Oct 26 01:48:30 2015
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+CLK              2.10   {0 1.05}                      {CLK}
+--------------------------------------------------------------------------------
+1

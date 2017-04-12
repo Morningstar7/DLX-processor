@@ -1,0 +1,63 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity D_LATCH is
+	port (		D:	in	std_logic;
+			EN:	in	std_logic;
+			Q:	out	std_logic);
+end D_LATCH;
+
+architecture BEHAVIORAL of D_LATCH is
+
+	component NOR_GATE
+		port (		A:	in	std_logic;
+				B:	in	std_logic;
+				Y:	out	std_logic);
+	end component;
+
+	component AND_GATE
+		port (	A:	in	std_logic;
+			B:	in	std_logic;
+			Y:	out	std_logic);
+	end component;
+
+	component INV
+		port (	A:	in	std_logic;
+			Y:	out	std_logic);
+	end component;
+
+	signal NOT_D:		std_logic;
+	signal OUT_AND_1:	std_logic;
+	signal OUT_AND_2:	std_logic;
+	signal OUT_NOR_1:	std_logic;
+	signal OUT_NOR_2:	std_logic;
+
+	begin
+
+		Q <= OUT_NOR_1;
+
+		INV_D: INV	port map (	A => D,
+						Y => NOT_D);
+
+		AND_1: AND_GATE	port map (	A => NOT_D,
+						B => EN,
+						Y => OUT_AND_1);
+
+		AND_2: AND_GATE	port map (	A => D,
+						B => EN,
+						Y => OUT_AND_2);
+
+		NOR_1: NOR_GATE	port map (	A => OUT_AND_1,
+						B => OUT_NOR_2,
+						Y => OUT_NOR_1);
+
+		NOR_2: NOR_GATE	port map (	A => OUT_AND_2,
+						B => OUT_NOR_1,
+						Y => OUT_NOR_2);
+		
+end BEHAVIORAL;
+
+configuration CFG_D_LATCH_BEHAVIORAL of D_LATCH is
+	for BEHAVIORAL
+	end for;
+end CFG_D_LATCH_BEHAVIORAL;

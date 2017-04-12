@@ -1,0 +1,43 @@
+line#      248: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/CU/CONTROL_UNIT.vhd:244: 'RST' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#      665: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/FSM_BPU.vhd:53: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+line#      666: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/FSM_BPU.vhd:82: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+line#      667: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/FSM_BPU.vhd:111: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+line#      668: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/FSM_BPU.vhd:140: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+line#      669: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/FSM_BPU.vhd:41: 'RST' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#      707: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CU_BPU.vhd:24: 'RST' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#      741: Warning: Design 'FD' was renamed to 'FD_1' to avoid
+                        a conflict with another design that has the same name but
+                different parameters. (LINK-17)
+line#      746: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/DECODE/REG_FILE.vhd:40: Potential simulation-synthesis mismatch if index exceeds size of array 'REGISTERS'. (ELAB-349)
+line#      747: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/DECODE/REG_FILE.vhd:45: Potential simulation-synthesis mismatch if index exceeds size of array 'REGISTERS'. (ELAB-349)
+line#      748: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/DECODE/REG_FILE.vhd:48: Potential simulation-synthesis mismatch if index exceeds size of array 'REGISTERS'. (ELAB-349)
+line#      896: Warning: Design 'AND_GATE' was renamed to 'AND_GATE_1' to avoid
+                        a conflict with another design that has the same name but
+                different parameters. (LINK-17)
+line#      947: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/FORWARD_UNIT/FORW_FSM.vhd:474: 'CURRENT_STATE_D' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1037: Warning: Design 'INV' was renamed to 'INV_1' to avoid
+                        a conflict with another design that has the same name but
+                different parameters. (LINK-17)
+line#     1044: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:38: Potential simulation-synthesis mismatch if index exceeds size of array 'CAM_MEM'. (ELAB-349)
+line#     1045: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:38: 'DATA_IN' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1046: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:39: Potential simulation-synthesis mismatch if index exceeds size of array 'VALID_BIT'. (ELAB-349)
+line#     1047: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:41: 'CAM_MEM[0]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1048: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:42: 'CAM_MEM[1]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1049: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:43: 'CAM_MEM[2]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1050: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:44: 'CAM_MEM[3]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1051: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:45: 'VALID_BIT[0]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1052: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:46: 'VALID_BIT[1]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1053: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:47: 'VALID_BIT[2]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1054: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CAM_BPU.vhd:48: 'VALID_BIT[3]' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1128: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CACHE_DATA_BPU.vhd:28: Potential simulation-synthesis mismatch if index exceeds size of array 'CACHE_MEM'. (ELAB-349)
+line#     1129: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/BPU/CACHE_DATA_BPU.vhd:32: Potential simulation-synthesis mismatch if index exceeds size of array 'CACHE_MEM'. (ELAB-349)
+line#     1192: Warning: Design 'XOR_GATE' was renamed to 'XOR_GATE_1' to avoid
+                        a conflict with another design that has the same name but
+                different parameters. (LINK-17)
+line#     1547: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/DIVIDER/DIVISOR_FSM.vhd:84: 'CNT' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1548: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/DIVIDER/DIVISOR_FSM.vhd:85: 'MSB_REM' is being read, but does not appear in the sensitivity list of the block. (ELAB-292)
+line#     1625: Warning:  /home/msys15.20/ALU_PUSH/DLX_FINAL/SYN/DATAPATH/MULTIPLIER/BOOTH_ENCODER.vhd:17: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+line#     1660: Warning: Design 'REG_N16' was renamed to 'REG_N16_1' to avoid
+                        a conflict with another design that has the same name but
+                different parameters. (LINK-17)
+line#     1669: Error: extra positional option 'high' (CMD-012)

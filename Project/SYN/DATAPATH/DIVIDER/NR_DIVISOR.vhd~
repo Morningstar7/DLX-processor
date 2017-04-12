@@ -1,0 +1,142 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_arith.all;
+use IEEE.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+
+entity NR_DIVISOR is
+port (
+	CLK : 		in std_logic; 				-- CLOCK
+	RST: 		in std_logic; 				-- RESET
+	EN:		in std_logic;
+	Z   : 		in std_logic_vector(15 downto 0); 	-- DIVIDEND 
+	D   : 		in std_logic_vector(15 downto 0); 	-- DIVISOR
+	Q   : 		out std_logic_vector(15 downto 0);	-- QUOTIENT
+	R   : 		out std_logic_vector(15 downto 0);	-- REMAINDER
+	ADD_IN_D: 	out std_logic_vector(15 downto 0);
+	ADD_IN_R:	out std_logic_vector(15 downto 0); 
+	SIGN:		out std_logic;
+	ADD_OUT:	in std_logic_vector(15 downto 0));
+
+end NR_DIVISOR;
+
+architecture STRUCTURAL of NR_DIVISOR is
+
+	component NR_DIVISOR_DATAPATH
+		port (
+			CLK : 			in std_logic; 				-- CLOCK
+			RST: 			in std_logic; 				-- RESET 
+			Z   : 			in std_logic_vector(15 downto 0); 	-- DIVIDEND 
+			D   : 			in std_logic_vector(15 downto 0); 	-- DIVISOR
+			Q   : 			out std_logic_vector(15 downto 0);	-- QUOTIENT
+			R   : 			out std_logic_vector(15 downto 0);	-- REMAINDER
+			MSB_REM:		out std_logic;
+			ADD_IN_D: 		out std_logic_vector(15 downto 0);
+			ADD_IN_R:		out std_logic_vector(15 downto 0); 
+			SIGN:			out std_logic;
+			ADD_OUT:		in std_logic_vector(15 downto 0));
+			SEL_R_MUX_IN:		in std_logic;
+			SEL_Q_MUX_IN:		in std_logic;
+			SEL_D_MUX		in std_logic;
+			SEL_ADD_IN_D_MUX:	in std_logic_vector(2 downto 0);
+			SEL_ADD_IN_R_MUX:	in std_logic_vector(2 downto 0);
+			SEL_SIGN_MUX:		in std_logic_vector(2 downto 0);
+			EN_D:			in std_logic;
+			EN_Z:			in std_logic;
+			EN_Q:			in std_logic;
+			EN_R:			in std_logic;
+			EN_SIGN:		in std_logic;
+		
+	end component;
+
+	component FSM_DIVISOR
+		port (
+			CLK : 			in std_logic; 				-- CLOCK
+			RST : 			in std_logic; 				-- RESET 
+			EN			in std_logic;
+			SEL_R_MUX_IN:		out std_logic;
+			SEL_Q_MUX_IN:		out std_logic;
+			SEL_D_MUX		out std_logic;
+			SEL_ADD_IN_D_MUX:	out std_logic_vector(2 downto 0);
+			SEL_ADD_IN_R_MUX:	out std_logic_vector(2 downto 0);
+			SEL_SIGN_MUX:		out std_logic_vector(2 downto 0);
+			EN_D:			out std_logic;
+			EN_Z:			out std_logic;
+			EN_Q:			out std_logic;
+			EN_R:			out std_logic;
+			EN_SIGN:		out std_logic;
+			MSB_REM:		in std_logic);
+	end component;
+
+
+	signal	CLK : 			std_logic;
+	signal	RST : 			std_logic;
+	signal	SEL_R_MUX_IN:		std_logic;
+	signal	SEL_Q_MUX_IN:		std_logic;
+	signal	SEL_D_MUX		std_logic;
+	signal	SEL_ADD_IN_D_MUX:	std_logic_vector(2 downto 0);
+	signal	SEL_ADD_IN_R_MUX:	std_logic_vector(2 downto 0);
+	signal	SEL_SIGN_MUX:		std_logic_vector(2 downto 0);
+	signal	EN_D:			std_logic;
+	signal	EN_Z:			std_logic;
+	signal	EN_Q:			std_logic;
+	signal	EN_R:			std_logic;
+	signal	EN_SIGN:		std_logic;
+	signal	MSB_REM:		std_logic
+	
+	begin
+
+	INST_DATAPATH: NR_DIVISOR_DATAPATH	port map (	CLK 			=> CLK,
+								RST 			=> RST,
+								Z 			=> Z,
+								D 			=> D,
+								Q			=> Q,
+								R			=> R,
+								MSB_REM 		=> MSB_REM,
+								ADD_IN_D 		=> ADD_IN_D,
+								ADD_IN_R 		=> ADD_IN_R,
+								SIGN 			=> SIGN,
+								ADD_OUT 		=> ADD_OUT,
+								SEL_R_MUX_IN		=> SEL_R_MUX_IN,		
+								SEL_Q_MUX_IN		=> SEL_Q_MUX_IN,
+								SEL_D_MUX		=> SEL_D_MUX,
+								SEL_ADD_IN_D_MUX:	=> SEL_ADD_IN_D_MUX,
+								SEL_ADD_IN_R_MUX:	=> SEL_ADD_IN_R_MUX,
+								SEL_SIGN_MUX:		=> SEL_SIGN_MUX,
+								EN_D:			=> EN_D,
+								EN_Z:			=> EN_Z,
+								EN_Q:			=> EN_Q,
+								EN_R:			=> EN_R,
+								EN_SIGN:		=> EN_SIGN
+						);
+													
+
+	INST_FSM: FSM_DIVISOR			port map (	CLK 			=> CLK,
+								RST			=> RST,
+								EN			=> EN,
+								SEL_R_MUX_IN		=> SEL_R_MUX_IN,
+								SEL_Q_MUX_IN		=> SEL_Q_MUX_IN,
+								SEL_D_MUX		=> SEL_D_MUX,
+								SEL_ADD_IN_D_MUX	=> SEL_ADD_IN_D_MUX,
+								SEL_ADD_IN_R_MUX	=> SEL_ADD_IN_R_MUX,
+								SEL_SIGN_MUX		=> SEL_SIGN_MUX,
+								EN_D			=> EN_D,
+								EN_Z			=> EN_Z,
+								EN_Q			=> EN_Q,
+								EN_R			=> EN_R,
+								EN_SIGN			=> EN_SIGN,
+								MSB_REM			=> MSB_REM
+						);
+
+end STRUCTURAL;
+
+configuration CFG_NR_DIVISOR_STRUCTURAL of NR_DIVISOR is
+	for STRUCTURAL 
+		for all: NR_DIVISOR_DATAPATH
+			use configuration WORK.CFG_NR_DIVISOR_DATAPATH_STRUCTURAL;
+		end for;
+		for all: FSM_DIVISOR
+			use configuration WORK.CFG_FSM_DIVISOR_FSM;
+		end for;
+	end for;
+end CFG_NR_DIVISOR_STRUCTURAL; 

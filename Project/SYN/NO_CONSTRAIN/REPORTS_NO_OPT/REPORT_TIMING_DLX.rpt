@@ -1,0 +1,624 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DLX
+Version: Z-2007.03-SP1
+Date   : Sun Oct 25 23:05:31 2015
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: DATAPATH_INST/PIPE_IF_ID_NPC/FF_1/Q_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: DATAPATH_INST/INST_FETCH/PC/FF_31/Q_reg
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DLX                0K_hvratio_1_4        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  DATAPATH_INST/PIPE_IF_ID_NPC/FF_1/Q_reg/CK (DFF_X1)     0.00 #     0.00 r
+  DATAPATH_INST/PIPE_IF_ID_NPC/FF_1/Q_reg/Q (DFF_X1)      0.09       0.09 f
+  DATAPATH_INST/PIPE_IF_ID_NPC/FF_1/Q (FD_1_579)          0.00       0.09 f
+  DATAPATH_INST/PIPE_IF_ID_NPC/Q[1] (REG_N32_0)           0.00       0.09 f
+  DATAPATH_INST/INST_DECODE/NPC[1] (DECODE_N32_N_ADDR5_IMM_SIZE16_OP_CODE_SIZE6)
+                                                          0.00       0.09 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/A[1] (RCA_GEN_NO_C_N32)
+                                                          0.00       0.09 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/A (FA_236)
+                                                          0.00       0.09 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/XOR_GATE_1/A (XOR_GATE_1_513)
+                                                          0.00       0.09 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/XOR_GATE_1/U1/Z (XOR2_X1)
+                                                          0.06       0.15 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/XOR_GATE_1/Y (XOR_GATE_1_513)
+                                                          0.00       0.15 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/AND_GATE_2/A (AND_GATE_1_577)
+                                                          0.00       0.15 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/AND_GATE_2/Y (AND_GATE_1_577)
+                                                          0.00       0.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/OR_GATE_1/B (OR_GATE_274)
+                                                          0.00       0.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.23 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/OR_GATE_1/Y (OR_GATE_274)
+                                                          0.00       0.23 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_0/Co (FA_236)
+                                                          0.00       0.23 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/Ci (FA_235)
+                                                          0.00       0.23 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/AND_GATE_2/B (AND_GATE_1_575)
+                                                          0.00       0.23 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/AND_GATE_2/Y (AND_GATE_1_575)
+                                                          0.00       0.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/OR_GATE_1/B (OR_GATE_273)
+                                                          0.00       0.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.31 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/OR_GATE_1/Y (OR_GATE_273)
+                                                          0.00       0.31 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_1/Co (FA_235)
+                                                          0.00       0.31 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/Ci (FA_234)
+                                                          0.00       0.31 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/AND_GATE_2/B (AND_GATE_1_573)
+                                                          0.00       0.31 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/AND_GATE_2/Y (AND_GATE_1_573)
+                                                          0.00       0.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/OR_GATE_1/B (OR_GATE_272)
+                                                          0.00       0.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.39 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/OR_GATE_1/Y (OR_GATE_272)
+                                                          0.00       0.39 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_2/Co (FA_234)
+                                                          0.00       0.39 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/Ci (FA_233)
+                                                          0.00       0.39 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/AND_GATE_2/B (AND_GATE_1_571)
+                                                          0.00       0.39 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/AND_GATE_2/Y (AND_GATE_1_571)
+                                                          0.00       0.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/OR_GATE_1/B (OR_GATE_271)
+                                                          0.00       0.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.47 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/OR_GATE_1/Y (OR_GATE_271)
+                                                          0.00       0.47 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_3/Co (FA_233)
+                                                          0.00       0.47 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/Ci (FA_232)
+                                                          0.00       0.47 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/AND_GATE_2/B (AND_GATE_1_569)
+                                                          0.00       0.47 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/AND_GATE_2/Y (AND_GATE_1_569)
+                                                          0.00       0.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/OR_GATE_1/B (OR_GATE_270)
+                                                          0.00       0.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.55 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/OR_GATE_1/Y (OR_GATE_270)
+                                                          0.00       0.55 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_4/Co (FA_232)
+                                                          0.00       0.55 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/Ci (FA_231)
+                                                          0.00       0.55 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/AND_GATE_2/B (AND_GATE_1_567)
+                                                          0.00       0.55 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/AND_GATE_2/Y (AND_GATE_1_567)
+                                                          0.00       0.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/OR_GATE_1/B (OR_GATE_269)
+                                                          0.00       0.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.63 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/OR_GATE_1/Y (OR_GATE_269)
+                                                          0.00       0.63 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_5/Co (FA_231)
+                                                          0.00       0.63 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/Ci (FA_230)
+                                                          0.00       0.63 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/AND_GATE_2/B (AND_GATE_1_565)
+                                                          0.00       0.63 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/AND_GATE_2/Y (AND_GATE_1_565)
+                                                          0.00       0.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/OR_GATE_1/B (OR_GATE_268)
+                                                          0.00       0.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.71 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/OR_GATE_1/Y (OR_GATE_268)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_6/Co (FA_230)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/Ci (FA_229)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/AND_GATE_2/B (AND_GATE_1_563)
+                                                          0.00       0.71 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.73 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/AND_GATE_2/Y (AND_GATE_1_563)
+                                                          0.00       0.73 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/OR_GATE_1/B (OR_GATE_267)
+                                                          0.00       0.73 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.79 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/OR_GATE_1/Y (OR_GATE_267)
+                                                          0.00       0.79 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_7/Co (FA_229)
+                                                          0.00       0.79 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/Ci (FA_228)
+                                                          0.00       0.79 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/AND_GATE_2/B (AND_GATE_1_561)
+                                                          0.00       0.79 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.81 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/AND_GATE_2/Y (AND_GATE_1_561)
+                                                          0.00       0.81 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/OR_GATE_1/B (OR_GATE_266)
+                                                          0.00       0.81 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.87 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/OR_GATE_1/Y (OR_GATE_266)
+                                                          0.00       0.87 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_8/Co (FA_228)
+                                                          0.00       0.87 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/Ci (FA_227)
+                                                          0.00       0.87 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/AND_GATE_2/B (AND_GATE_1_559)
+                                                          0.00       0.87 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.89 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/AND_GATE_2/Y (AND_GATE_1_559)
+                                                          0.00       0.89 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/OR_GATE_1/B (OR_GATE_265)
+                                                          0.00       0.89 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       0.94 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/OR_GATE_1/Y (OR_GATE_265)
+                                                          0.00       0.94 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_9/Co (FA_227)
+                                                          0.00       0.94 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/Ci (FA_226)
+                                                          0.00       0.94 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/AND_GATE_2/B (AND_GATE_1_557)
+                                                          0.00       0.94 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       0.97 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/AND_GATE_2/Y (AND_GATE_1_557)
+                                                          0.00       0.97 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/OR_GATE_1/B (OR_GATE_264)
+                                                          0.00       0.97 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.02 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/OR_GATE_1/Y (OR_GATE_264)
+                                                          0.00       1.02 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_10/Co (FA_226)
+                                                          0.00       1.02 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/Ci (FA_225)
+                                                          0.00       1.02 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/AND_GATE_2/B (AND_GATE_1_555)
+                                                          0.00       1.02 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/AND_GATE_2/Y (AND_GATE_1_555)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/OR_GATE_1/B (OR_GATE_263)
+                                                          0.00       1.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.10 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/OR_GATE_1/Y (OR_GATE_263)
+                                                          0.00       1.10 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_11/Co (FA_225)
+                                                          0.00       1.10 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/Ci (FA_224)
+                                                          0.00       1.10 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/AND_GATE_2/B (AND_GATE_1_553)
+                                                          0.00       1.10 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/AND_GATE_2/Y (AND_GATE_1_553)
+                                                          0.00       1.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/OR_GATE_1/B (OR_GATE_262)
+                                                          0.00       1.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/OR_GATE_1/Y (OR_GATE_262)
+                                                          0.00       1.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_12/Co (FA_224)
+                                                          0.00       1.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/Ci (FA_223)
+                                                          0.00       1.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/AND_GATE_2/B (AND_GATE_1_551)
+                                                          0.00       1.18 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/AND_GATE_2/Y (AND_GATE_1_551)
+                                                          0.00       1.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/OR_GATE_1/B (OR_GATE_261)
+                                                          0.00       1.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/OR_GATE_1/Y (OR_GATE_261)
+                                                          0.00       1.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_13/Co (FA_223)
+                                                          0.00       1.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/Ci (FA_222)
+                                                          0.00       1.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/AND_GATE_2/B (AND_GATE_1_549)
+                                                          0.00       1.26 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/AND_GATE_2/Y (AND_GATE_1_549)
+                                                          0.00       1.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/OR_GATE_1/B (OR_GATE_260)
+                                                          0.00       1.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/OR_GATE_1/Y (OR_GATE_260)
+                                                          0.00       1.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_14/Co (FA_222)
+                                                          0.00       1.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/Ci (FA_221)
+                                                          0.00       1.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/AND_GATE_2/B (AND_GATE_1_547)
+                                                          0.00       1.34 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/AND_GATE_2/Y (AND_GATE_1_547)
+                                                          0.00       1.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/OR_GATE_1/B (OR_GATE_259)
+                                                          0.00       1.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/OR_GATE_1/Y (OR_GATE_259)
+                                                          0.00       1.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_15/Co (FA_221)
+                                                          0.00       1.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/Ci (FA_220)
+                                                          0.00       1.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/AND_GATE_2/B (AND_GATE_1_545)
+                                                          0.00       1.42 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/AND_GATE_2/Y (AND_GATE_1_545)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/OR_GATE_1/B (OR_GATE_258)
+                                                          0.00       1.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/OR_GATE_1/Y (OR_GATE_258)
+                                                          0.00       1.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_16/Co (FA_220)
+                                                          0.00       1.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/Ci (FA_219)
+                                                          0.00       1.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/AND_GATE_2/B (AND_GATE_1_543)
+                                                          0.00       1.50 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/AND_GATE_2/Y (AND_GATE_1_543)
+                                                          0.00       1.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/OR_GATE_1/B (OR_GATE_257)
+                                                          0.00       1.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/OR_GATE_1/Y (OR_GATE_257)
+                                                          0.00       1.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_17/Co (FA_219)
+                                                          0.00       1.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/Ci (FA_218)
+                                                          0.00       1.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/AND_GATE_2/B (AND_GATE_1_541)
+                                                          0.00       1.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.61 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/AND_GATE_2/Y (AND_GATE_1_541)
+                                                          0.00       1.61 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/OR_GATE_1/B (OR_GATE_256)
+                                                          0.00       1.61 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/OR_GATE_1/Y (OR_GATE_256)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_18/Co (FA_218)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/Ci (FA_217)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/AND_GATE_2/B (AND_GATE_1_539)
+                                                          0.00       1.66 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.69 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/AND_GATE_2/Y (AND_GATE_1_539)
+                                                          0.00       1.69 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/OR_GATE_1/B (OR_GATE_255)
+                                                          0.00       1.69 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.74 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/OR_GATE_1/Y (OR_GATE_255)
+                                                          0.00       1.74 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_19/Co (FA_217)
+                                                          0.00       1.74 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/Ci (FA_216)
+                                                          0.00       1.74 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/AND_GATE_2/B (AND_GATE_1_537)
+                                                          0.00       1.74 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.76 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/AND_GATE_2/Y (AND_GATE_1_537)
+                                                          0.00       1.76 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/OR_GATE_1/B (OR_GATE_254)
+                                                          0.00       1.76 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.82 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/OR_GATE_1/Y (OR_GATE_254)
+                                                          0.00       1.82 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_20/Co (FA_216)
+                                                          0.00       1.82 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/Ci (FA_215)
+                                                          0.00       1.82 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/AND_GATE_2/B (AND_GATE_1_535)
+                                                          0.00       1.82 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.84 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/AND_GATE_2/Y (AND_GATE_1_535)
+                                                          0.00       1.84 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/OR_GATE_1/B (OR_GATE_253)
+                                                          0.00       1.84 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.90 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/OR_GATE_1/Y (OR_GATE_253)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_21/Co (FA_215)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/Ci (FA_214)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/AND_GATE_2/B (AND_GATE_1_533)
+                                                          0.00       1.90 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       1.92 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/AND_GATE_2/Y (AND_GATE_1_533)
+                                                          0.00       1.92 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/OR_GATE_1/B (OR_GATE_252)
+                                                          0.00       1.92 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       1.98 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/OR_GATE_1/Y (OR_GATE_252)
+                                                          0.00       1.98 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_22/Co (FA_214)
+                                                          0.00       1.98 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/Ci (FA_213)
+                                                          0.00       1.98 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/AND_GATE_2/B (AND_GATE_1_531)
+                                                          0.00       1.98 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.00 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/AND_GATE_2/Y (AND_GATE_1_531)
+                                                          0.00       2.00 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/OR_GATE_1/B (OR_GATE_251)
+                                                          0.00       2.00 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/OR_GATE_1/Y (OR_GATE_251)
+                                                          0.00       2.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_23/Co (FA_213)
+                                                          0.00       2.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/Ci (FA_212)
+                                                          0.00       2.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/AND_GATE_2/B (AND_GATE_1_529)
+                                                          0.00       2.05 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.08 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/AND_GATE_2/Y (AND_GATE_1_529)
+                                                          0.00       2.08 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/OR_GATE_1/B (OR_GATE_250)
+                                                          0.00       2.08 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/OR_GATE_1/Y (OR_GATE_250)
+                                                          0.00       2.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_24/Co (FA_212)
+                                                          0.00       2.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/Ci (FA_211)
+                                                          0.00       2.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/AND_GATE_2/B (AND_GATE_1_527)
+                                                          0.00       2.13 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.16 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/AND_GATE_2/Y (AND_GATE_1_527)
+                                                          0.00       2.16 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/OR_GATE_1/B (OR_GATE_249)
+                                                          0.00       2.16 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/OR_GATE_1/Y (OR_GATE_249)
+                                                          0.00       2.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_25/Co (FA_211)
+                                                          0.00       2.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/Ci (FA_210)
+                                                          0.00       2.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/AND_GATE_2/B (AND_GATE_1_525)
+                                                          0.00       2.21 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.24 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/AND_GATE_2/Y (AND_GATE_1_525)
+                                                          0.00       2.24 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/OR_GATE_1/B (OR_GATE_248)
+                                                          0.00       2.24 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/OR_GATE_1/Y (OR_GATE_248)
+                                                          0.00       2.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_26/Co (FA_210)
+                                                          0.00       2.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/Ci (FA_209)
+                                                          0.00       2.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/AND_GATE_2/B (AND_GATE_1_523)
+                                                          0.00       2.29 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.32 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/AND_GATE_2/Y (AND_GATE_1_523)
+                                                          0.00       2.32 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/OR_GATE_1/B (OR_GATE_247)
+                                                          0.00       2.32 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/OR_GATE_1/Y (OR_GATE_247)
+                                                          0.00       2.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_27/Co (FA_209)
+                                                          0.00       2.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/Ci (FA_208)
+                                                          0.00       2.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/AND_GATE_2/B (AND_GATE_1_521)
+                                                          0.00       2.37 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.40 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/AND_GATE_2/Y (AND_GATE_1_521)
+                                                          0.00       2.40 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/OR_GATE_1/B (OR_GATE_246)
+                                                          0.00       2.40 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/OR_GATE_1/Y (OR_GATE_246)
+                                                          0.00       2.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_28/Co (FA_208)
+                                                          0.00       2.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/Ci (FA_207)
+                                                          0.00       2.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/AND_GATE_2/B (AND_GATE_1_519)
+                                                          0.00       2.45 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/AND_GATE_2/U1/ZN (AND2_X1)
+                                                          0.03       2.48 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/AND_GATE_2/Y (AND_GATE_1_519)
+                                                          0.00       2.48 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/OR_GATE_1/B (OR_GATE_245)
+                                                          0.00       2.48 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/OR_GATE_1/U1/ZN (OR2_X1)
+                                                          0.05       2.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/OR_GATE_1/Y (OR_GATE_245)
+                                                          0.00       2.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_29/Co (FA_207)
+                                                          0.00       2.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_30/Ci (FA_206)
+                                                          0.00       2.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_30/XOR_GATE_2/B (XOR_GATE_1_452)
+                                                          0.00       2.53 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_30/XOR_GATE_2/U1/Z (XOR2_X1)
+                                                          0.05       2.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_30/XOR_GATE_2/Y (XOR_GATE_1_452)
+                                                          0.00       2.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/FAI_30/S (FA_206)
+                                                          0.00       2.58 f
+  DATAPATH_INST/INST_DECODE/BRANCH_JMP_ADDER/S[31] (RCA_GEN_NO_C_N32)
+                                                          0.00       2.58 f
+  DATAPATH_INST/INST_DECODE/NPC_MUX/B[31] (MUX21_GEN_N32_4)
+                                                          0.00       2.58 f
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND2_31/A (NAND_GATE_1025)
+                                                          0.00       2.58 f
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND2_31/U1/ZN (NAND2_X1)
+                                                          0.02       2.60 r
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND2_31/Y (NAND_GATE_1025)
+                                                          0.00       2.60 r
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND3_31/B (NAND_GATE_1024)
+                                                          0.00       2.60 r
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND3_31/U1/ZN (NAND2_X1)
+                                                          0.02       2.62 f
+  DATAPATH_INST/INST_DECODE/NPC_MUX/UND3_31/Y (NAND_GATE_1024)
+                                                          0.00       2.62 f
+  DATAPATH_INST/INST_DECODE/NPC_MUX/Y[31] (MUX21_GEN_N32_4)
+                                                          0.00       2.62 f
+  DATAPATH_INST/INST_DECODE/NPC_ADDED[31] (DECODE_N32_N_ADDR5_IMM_SIZE16_OP_CODE_SIZE6)
+                                                          0.00       2.62 f
+  DATAPATH_INST/INST_FETCH/JUMP_ADDR[31] (FETCH_N32)      0.00       2.62 f
+  DATAPATH_INST/INST_FETCH/MUX_PC/A[31] (MUX21_GEN_N32_0)
+                                                          0.00       2.62 f
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND1_31/A (NAND_GATE_1410)
+                                                          0.00       2.62 f
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND1_31/U1/ZN (NAND2_X1)
+                                                          0.02       2.63 r
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND1_31/Y (NAND_GATE_1410)
+                                                          0.00       2.63 r
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND3_31/A (NAND_GATE_1408)
+                                                          0.00       2.63 r
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND3_31/U1/ZN (NAND2_X1)
+                                                          0.01       2.65 f
+  DATAPATH_INST/INST_FETCH/MUX_PC/UND3_31/Y (NAND_GATE_1408)
+                                                          0.00       2.65 f
+  DATAPATH_INST/INST_FETCH/MUX_PC/Y[31] (MUX21_GEN_N32_0)
+                                                          0.00       2.65 f
+  DATAPATH_INST/INST_FETCH/MUX_BPU/B[31] (MUX21_GEN_N32_7)
+                                                          0.00       2.65 f
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND2_31/A (NAND_GATE_1313)
+                                                          0.00       2.65 f
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND2_31/U1/ZN (NAND2_X1)
+                                                          0.02       2.66 r
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND2_31/Y (NAND_GATE_1313)
+                                                          0.00       2.66 r
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND3_31/B (NAND_GATE_1312)
+                                                          0.00       2.66 r
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND3_31/U1/ZN (NAND2_X1)
+                                                          0.01       2.68 f
+  DATAPATH_INST/INST_FETCH/MUX_BPU/UND3_31/Y (NAND_GATE_1312)
+                                                          0.00       2.68 f
+  DATAPATH_INST/INST_FETCH/MUX_BPU/Y[31] (MUX21_GEN_N32_7)
+                                                          0.00       2.68 f
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/B[31] (MUX21_GEN_N32_6)
+                                                          0.00       2.68 f
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND2_31/A (NAND_GATE_1217)
+                                                          0.00       2.68 f
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND2_31/U1/ZN (NAND2_X1)
+                                                          0.02       2.69 r
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND2_31/Y (NAND_GATE_1217)
+                                                          0.00       2.69 r
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND3_31/B (NAND_GATE_1216)
+                                                          0.00       2.69 r
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND3_31/U1/ZN (NAND2_X1)
+                                                          0.01       2.70 f
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/UND3_31/Y (NAND_GATE_1216)
+                                                          0.00       2.70 f
+  DATAPATH_INST/INST_FETCH/MUX_N_TAKEN/Y[31] (MUX21_GEN_N32_6)
+                                                          0.00       2.70 f
+  DATAPATH_INST/INST_FETCH/PC/D[31] (REG_N32_2)           0.00       2.70 f
+  DATAPATH_INST/INST_FETCH/PC/FF_31/D (FD_1_116)          0.00       2.70 f
+  DATAPATH_INST/INST_FETCH/PC/FF_31/U4/ZN (AOI22_X1)      0.03       2.74 r
+  DATAPATH_INST/INST_FETCH/PC/FF_31/U3/ZN (NOR2_X1)       0.01       2.75 f
+  DATAPATH_INST/INST_FETCH/PC/FF_31/Q_reg/D (DFF_X1)      0.00       2.75 f
+  data arrival time                                                  2.75
+
+  clock CLK (rise edge)                                   3.00       3.00
+  clock network delay (ideal)                             0.00       3.00
+  DATAPATH_INST/INST_FETCH/PC/FF_31/Q_reg/CK (DFF_X1)     0.00       3.00 r
+  library setup time                                     -0.04       2.96
+  data required time                                                 2.96
+  --------------------------------------------------------------------------
+  data required time                                                 2.96
+  data arrival time                                                 -2.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.21
+
+
+1

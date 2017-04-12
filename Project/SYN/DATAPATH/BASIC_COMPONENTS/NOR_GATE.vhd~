@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity NOR_GATE is
+	port (		A:	in	std_logic;
+			B:	in	std_logic;
+			Y:	out	std_logic);
+end NOR_GATE;
+
+architecture BEHAVIORAL of NOR_GATE is
+
+	signal B: std_logic_vector(N-1 downto 0);
+
+	begin
+
+		B <= (others => '0');
+		Y <= '1' when A = B else
+		'0';
+		
+end BEHAVIORAL;
+
+configuration CFG_NOR_GATE_BEHAVIORAL of NOR_GATE is
+	for BEHAVIORAL
+	end for;
+end CFG_NOR_GATE_BEHAVIORAL;

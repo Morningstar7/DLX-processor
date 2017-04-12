@@ -1,0 +1,183 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+use work.myTypes.all;
+
+entity BPU is
+	generic (	N:		integer;
+			OP_CODE_SIZE:	integer;
+			SET_BIT:	integer);
+	port (		CLK:		in	std_logic;
+			RST:		in	std_logic;
+			STALL_BRANCH:	in	std_logic;
+			BRANCH_DEC:	in	std_logic;
+			BRANCH_FETCH:	in	std_logic_vector(OP_CODE_SIZE-1 downto 0);
+			DEST_DEC:	in	std_logic_vector(N-1 downto 0);
+			PC_IN:		in	std_logic_vector(N-1 downto 0);
+			PC_OUT:		out	std_logic_vector(N-1 downto 0);
+			MUX_SEL:	out	std_logic);
+end BPU;
+
+architecture STRUCTURAL of BPU is
+
+	component CACHE_BPU
+		generic (	N:		integer;
+				SET_BIT:	integer);
+		port (		ADDR:		in	std_logic_vector(N-1 downto 0);
+				DATA_IN:	in	std_logic_vector(N-1 downto 0);
+				DATA_OUT:	out	std_logic_vector(N-1 downto 0);
+				ENC:		out	std_logic_vector(1 downto 0);
+				STALL:		in	std_logic;
+				RST:		in	std_logic;
+				LOAD:		in	std_logic;
+				CLK:		in	std_logic;
+				HIT_MISS:	out	std_logic);
+	end component;
+
+	component FSM_BPU
+		port (		RST:		in	std_logic;
+				CLK:		in	std_logic;
+				BRANCH_TAKEN:	in	std_logic;
+				EN_FSM:		in	std_logic;
+				STALL:		in	std_logic;
+				FSM_SEL:	in	std_logic_vector(1 downto 0);
+				MUX_SEL:	out	std_logic);
+	end component;
+
+	component CU_BPU
+		port (		HIT_MISS:	in	std_logic;
+				BRANCH_FETCH:	in	std_logic;
+				CLK:		in	std_logic;
+				RST:		in	std_logic;
+				BRANCH_TAKEN:	in	std_logic;
+				STALL_BRANCH:	in	std_logic;
+				NEW_BRANCH:	out	std_logic;
+				EN_FSM:		out	std_logic);
+	end component;
+
+	component FD
+		port(	D:	in	std_logic;
+			CLK:	in	std_logic;
+			EN:	in	std_logic;
+			RST:	in	std_logic;
+			Q:	out	std_logic);
+	end component;
+
+	component AND_GATE
+		port (	A:	in	std_logic;
+			B:	in	std_logic;
+			Y:	out	std_logic);
+	end component;
+
+	component N_OR
+		generic (	N: integer);
+		port (		A: in std_logic_vector(N-1 downto 0);
+				Y: out std_logic);
+	end component;
+
+	signal HIT_MISS:	std_logic;
+	signal LOAD:		std_logic;
+	signal FSM_SEL:		std_logic_vector(1 downto 0);
+	signal EN_FSM:		std_logic;
+	signal EN_FSM_VECT:	std_logic_vector(2 downto 0);
+	signal OUT_AND:		std_logic_vector(2 downto 0);
+	signal DIS_FSM:		std_logic;
+	signal EN_FSM_SIG:	std_logic;
+-- 	signal EN_FSM_2:	std_logic;
+	signal MUX_SEL_SIG:	std_logic;
+	signal EN_BPU:		std_logic;
+-- 	signal OUT_MUX_1:	std_logic;
+-- 	signal OUT_MUX_2:	std_logic;
+
+	begin
+
+		EN_BPU <=	'1' when BRANCH_FETCH = BTYPE_BEQZ else	--BEQZ
+				'1' when BRANCH_FETCH = BTYPE_BNEZ else	--BNEZ
+				'1' when BRANCH_FETCH = JTYPE_J else	--J
+				'1' when BRANCH_FETCH = JTYPE_JAL else	--JAL
+				'1' when BRANCH_FETCH = JTYPE_JALR else	--JALR
+				'1' when BRANCH_FETCH = JTYPE_JR else	--JR
+				'0';
+
+		MUX_SEL <= MUX_SEL_SIG and HIT_MISS;
+		DIS_FSM <= not STALL_BRANCH;
+
+		CACHE_INST: CACHE_BPU	generic map (	N => N,
+							SET_BIT => SET_BIT)
+					port map (	ADDR => PC_IN,
+							DATA_IN => DEST_DEC,
+							DATA_OUT => PC_OUT,
+							ENC => FSM_SEL,
+							STALL => STALL_BRANCH,
+							RST => RST,
+							LOAD => LOAD,
+							CLK => CLK,
+							HIT_MISS => HIT_MISS);
+
+		FSM_INST: FSM_BPU	port map (	RST => RST,
+							CLK => CLK,
+							BRANCH_TAKEN => BRANCH_DEC,
+							EN_FSM => EN_FSM_SIG,
+							STALL => STALL_BRANCH,
+							FSM_SEL => FSM_SEL,
+							MUX_SEL => MUX_SEL_SIG);
+
+		CU_INST: CU_BPU	port map (	HIT_MISS => HIT_MISS,
+						BRANCH_FETCH => EN_BPU,
+						CLK => CLK,
+						RST => RST,
+						BRANCH_TAKEN => BRANCH_DEC,
+						STALL_BRANCH => STALL_BRANCH,
+						NEW_BRANCH => LOAD,
+						EN_FSM => EN_FSM);
+
+		EN_FSM_VECT(0) <= EN_FSM;
+
+		FD_GEN: for i in 0 to 1 generate
+			FDs: FD	port map (	D => EN_FSM_VECT(i),
+						CLK => CLK,
+						EN => STALL_BRANCH,
+						RST => DIS_FSM,
+						Q => EN_FSM_VECT(i+1));
+		end generate FD_GEN;
+
+		AND_GEN: for i in 0 to 2 generate
+				ANDs: AND_GATE	port map (	A => EN_FSM_VECT(i),
+								B => DIS_FSM,
+								Y => OUT_AND(i));
+		end generate AND_GEN;
+
+		OR_INST: N_OR	generic map (	N => 3)
+				port map (	A => OUT_AND,
+						Y => EN_FSM_SIG);
+
+
+end STRUCTURAL;
+
+configuration CFG_BPU_STRUCTURAL of BPU is
+	for STRUCTURAL
+		for all: CACHE_BPU
+			use configuration WORK.CFG_CACHE_BPU_STRUCTURAL;
+		end for;
+		for all: FSM_BPU
+			use configuration WORK.CFG_FSM_BPU_FSM;
+		end for;
+		for all: CU_BPU
+			use configuration WORK.CFG_CU_BPU_FSM;
+		end for;
+		for FD_GEN
+			for all: FD
+				use configuration WORK.CFG_FD_PIPPO;
+			end for;
+		end for;
+		for AND_GEN
+			for all: AND_GATE
+				use configuration WORK.CFG_AND_GATE_BEHAVIORAL;
+			end for;
+		end for;
+		for all: N_OR
+			use configuration WORK.CFG_N_OR_BEHAVIORAL;
+		end for;
+	end for;
+end configuration CFG_BPU_STRUCTURAL;

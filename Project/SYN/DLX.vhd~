@@ -1,0 +1,256 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use work.myTypes.all;
+
+entity DLX is
+	port	(	CLK:		in	std_logic;
+			RST:		in	std_logic;
+			DATA_IN_INSTR:	in	std_logic_vector(7 downto 0);
+			DATA_IN_MEM:	in	std_logic_vector(31 downto 0);
+			RM:		out	std_logic;
+			WM:		out	std_logic;
+			ADDR_MEM:	out	std_logic_vector(31 downto 0);
+			DATA_OUT_MEM:	out	std_logic_vector(31 downto 0);
+			ADDR_INSTR:	out	std_logic_vector(31 downto 0));
+end DLX;
+
+architecture ALU_PUSH of DLX is
+
+	component DATAPATH
+		generic (	N:		integer;
+				N_ADDR:		integer;
+				IMM_SIZE:	integer;
+				OP_CODE_SIZE:	integer;
+				M:		integer;
+				ALUSIZE:	integer);
+		port	(	CLK:		in	std_logic;
+				RST:		in	std_logic;
+				--FETCH SIGNALS
+				EN_PC:		in	std_logic;
+				EN_1:		in	std_logic;
+				--DECODE SIGNALS
+				EN_2:		in	std_logic;
+				CONFIRM_JMP:	in	std_logic;
+				CONFIRM_BRANCH:	in	std_logic;
+				BRANCH_TYPE:	in	std_logic;
+				RD1:		in	std_logic;
+				RD2:		in	std_logic;
+				WR:		in	std_logic;
+				SEL_DEST:	in	std_logic_vector(1 downto 0);
+				LHI_SEL:	in	std_logic;
+				JMP_SEL:	in	std_logic;
+				--EXECUTE SIGNALS
+				EN_3:		in	std_logic;
+				ALU_CODE:	in 	std_logic_vector(ALUSIZE-1 downto 0); 
+				OP_SEL:		in	std_logic; 
+				--MEMORY SIGNALS
+				EN_4:		in	std_logic;
+				STORE_MASK:	in	std_logic_vector(1 downto 0);
+				LOAD_TYPE:	in	std_logic_vector(2 downto 0);
+				--WB SIGNALS
+				SEL:		in	std_logic_vector(1 downto 0);
+				DATA_IN_IRAM:	in	std_logic_vector(7 downto 0);
+				DATA_IN_MEM:	in	std_logic_vector(N-1 downto 0);
+				DATA_OUT_MEM:	out	std_logic_vector(N-1 downto 0);
+				ADDR_MEM:	out	std_logic_vector(N-1 downto 0);
+				INSTR_CACHE_H_M:	out	std_logic;
+				ADDR_IRAM:	out	std_logic_vector(N-1 downto 0);
+				INSTR:		out	std_logic_vector(N-1 downto 0);
+				--FORWARDING UNIT SIGNALS
+				STALL:		out	std_logic;
+				--BRANCH SIGNALS
+				WRONG_FETCH:	out	std_logic);
+	end component;
+
+	component FSM_CU
+		generic (	CW_SIZE:	integer;		--27
+				FETCH_SIGs:	integer;		--1
+				DECODE_SIGs:	integer;		--8
+				EXECUTE_SIGs:	integer;		--6
+				MEM_SIGs:	integer;		--8
+				WB_SIG:		integer;		--3
+				ALU_CODE_SIZE:	integer;		--5
+				IR_SIZE:	integer;		--32
+				OPCODE_SIZE:	integer;		--6
+				FUNC_SIZE:	integer);		--11
+		port (		CLK:		in	std_logic;
+				RST:		in	std_logic;
+				STALL:		in	std_logic;
+				INSTR_HIT_MISS:	in	std_logic;
+				WRONG_FETCH:	in	std_logic;
+				OPCODE:		in	std_logic_vector(OPCODE_SIZE-1 downto 0);
+				FUNC:		in	std_logic_vector(FUNC_SIZE-1 downto 0);
+				-- Instruction Register
+				-- FETCH Control Signals
+				EN_IF:	out		std_logic;			-- Fetch-Decode Pipe regs Enable
+				-- DECODE Control signal
+				EN_ID:		out	std_logic;			-- Register File Enable
+				CONFIRM_JMP:	out	std_logic;
+				CONFIRM_BRANCH:	out	std_logic;
+				BRANCH_TYPE:	out	std_logic;
+				RD1:		out	std_logic;			-- Register File Read Port 1 Enable
+				RD2:		out	std_logic;			-- Register File Read Port 2 Enable
+				SEL_DEST:	out	std_logic_vector(1 downto 0);	-- Destination Mux
+				LHI_SEL:	out	std_logic;
+				JMP_SEL:	out	std_logic;
+				-- EXECUTE Control signal
+				EN_EXE:		out	std_logic;
+				ALU_CODE:	out	std_logic_vector(ALU_CODE_SIZE-1 downto 0);			-- ALU op 3
+				OP_SEL:		out	std_logic;			-- ALU port Mux
+				-- L/S CONTROL SIGNALS
+				EN_MEM:		out	std_logic;
+				STORE_MASK:	out	std_logic_vector(1 downto 0);
+				RM:		out	std_logic;			-- Read Mem Enable
+				WM:		out	std_logic;			-- Write Mem Enable
+				LOAD_TYPE:	out	std_logic_vector(2 downto 0);
+				-- WB Control signals
+				WB_SEL:		out	std_logic_vector(1 downto 0);			-- Write Back selector Mux
+				WR:		out	std_logic);
+	end component;
+
+	constant	N:		integer := 32;
+	constant	N_ADDR:		integer := 5;
+	constant	IMM_SIZE:	integer := 16;
+	constant	OP_CODE_SIZE:	integer := 6;
+	constant	M:		integer := 5;
+	constant	CW_SIZE:	integer := 29;		--29
+	constant	FETCH_SIGs:	integer := 1;		--1
+	constant	DECODE_SIGs:	integer := 10;		--10
+	constant	EXECUTE_SIGs:	integer := 7;		--7
+	constant	MEM_SIGs:	integer := 8;		--8
+	constant	WB_SIG:		integer := 3;		--3
+	constant	ALU_CODE_SIZE:	integer := 5;		--5
+	constant	IR_SIZE:	integer := 32;		--32
+	constant	OPCODE_SIZE:	integer := 6;		--6
+	constant	FUNC_SIZE:	integer := 11;		--11
+
+	signal	EN_IF_SIG:		std_logic;
+	--DECODE SIGNALS
+	signal	EN_2_SIG:		std_logic;
+	signal	CONFIRM_JMP_SIG:	std_logic;
+	signal	CONFIRM_BRANCH_SIG:	std_logic;
+	signal	BRANCH_TYPE_SIG:	std_logic;
+	signal	RD1_SIG:		std_logic;
+	signal	RD2_SIG:		std_logic;
+	signal	WR_SIG:			std_logic;
+	signal	SEL_DEST_SIG:		std_logic_vector(1 downto 0);
+	signal	LHI_SEL_SIG:		std_logic;
+	signal	JMP_SEL_SIG:		std_logic;
+	--EXECUTE SIGNALS
+	signal	EN_3_SIG:		std_logic;
+	signal	ALU_CODE_SIG:		std_logic_vector(ALUSIZE-1 downto 0); 
+	signal	OP_SEL_SIG:		std_logic; 
+	--MEMORY SIGNALS
+	signal	EN_4_SIG:		std_logic;
+	signal	RM_SIG:			std_logic;
+	signal	WM_SIG:			std_logic;
+	signal	LOAD_TYPE:		std_logic_vector(2 downto 0);
+	signal	STORE_MASK:		std_logic_vector(1 downto 0);
+	--WB SIGNALS
+	signal	SEL_SIG:		std_logic_vector(1 downto 0);
+	--INSTRUCTION SIGNAL
+	signal INSTR_SIG:		std_logic_vector(N-1 downto 0);
+	--STALL FROM THE FORWARD UNIT
+	signal STALL:			std_logic;
+	signal INSTR_CACHE_H_M:		std_logic;
+	--WRONG FETCH
+	signal WRONG_FETCH:		std_logic;
+
+	begin
+
+		WM <= WM_SIG;
+		RM <= RM_SIG;
+
+		INST_CU: FSM_CU
+			generic map (	CW_SIZE		=>	CW_SIZE,
+					FETCH_SIGs	=>	FETCH_SIGs,
+					DECODE_SIGs	=>	DECODE_SIGs,
+					EXECUTE_SIGs	=>	EXECUTE_SIGs,
+					MEM_SIGs	=>	MEM_SIGs,
+					WB_SIG		=>	WB_SIG,
+					ALU_CODE_SIZE	=>	ALU_CODE_SIZE,
+					IR_SIZE		=>	IR_SIZE,
+					OPCODE_SIZE	=>	OPCODE_SIZE,
+					FUNC_SIZE	=>	FUNC_SIZE)
+			port map (	CLK		=>	CLK,
+					RST		=>	RST,
+					STALL		=>	STALL,
+					INSTR_HIT_MISS	=>	INSTR_CACHE_H_M,
+					WRONG_FETCH	=>	WRONG_FETCH,
+					OPCODE		=>	INSTR_SIG(N-1 downto N-OPCODE_SIZE),
+					FUNC		=>	INSTR_SIG(FUNC_SIZE-1 downto 0),
+					-- FETCH Control Signals
+					EN_IF		=>	EN_IF_SIG,
+					-- DECODE Control signal
+					EN_ID		=>	EN_2_SIG,
+					CONFIRM_JMP	=>	CONFIRM_JMP_SIG,
+					CONFIRM_BRANCH	=>	CONFIRM_BRANCH_SIG,
+					BRANCH_TYPE	=>	BRANCH_TYPE_SIG,
+					RD1		=>	RD1_SIG,
+					RD2		=>	RD2_SIG,
+					SEL_DEST	=>	SEL_DEST_SIG,
+					LHI_SEL		=>	LHI_SEL_SIG,
+					JMP_SEL		=>	JMP_SEL_SIG,
+					-- EXECUTE Control signal
+					EN_EXE		=>	EN_3_SIG,
+					ALU_CODE	=>	ALU_CODE_SIG,
+					OP_SEL		=>	OP_SEL_SIG,
+					-- L/S CONTROL SIGNALS
+					EN_MEM		=>	EN_4_SIG,
+					STORE_MASK	=>	STORE_MASK,
+					RM		=>	RM_SIG,
+					WM		=>	WM_SIG,
+					LOAD_TYPE	=>	LOAD_TYPE,
+					-- WB Control signals
+					WB_SEL		=>	SEL_SIG,
+					WR		=>	WR_SIG);
+ 
+		DATAPATH_INST: DATAPATH generic map (	N		=> N,
+							N_ADDR		=> N_ADDR,
+							IMM_SIZE	=> IMM_SIZE,
+							OP_CODE_SIZE	=> OP_CODE_SIZE,
+							M		=> M,
+							ALUSIZE		=> ALU_CODE_SIZE)
+					port map (	CLK		=> CLK,
+							RST		=> RST,
+							EN_PC		=> EN_IF_SIG,
+							EN_1		=> EN_IF_SIG,
+							EN_2		=> EN_2_SIG,
+							CONFIRM_JMP	=> CONFIRM_JMP_SIG,
+							CONFIRM_BRANCH	=> CONFIRM_BRANCH_SIG,
+							BRANCH_TYPE	=> BRANCH_TYPE_SIG,
+							RD1		=> RD1_SIG,
+							RD2		=> RD2_SIG,
+							WR		=> WR_SIG,
+							SEL_DEST	=> SEL_DEST_SIG,
+							LHI_SEL		=> LHI_SEL_SIG,
+							JMP_SEL		=> JMP_SEL_SIG,
+							EN_3		=> EN_3_SIG,
+							ALU_CODE	=> ALU_CODE_SIG,
+							OP_SEL		=> OP_SEL_SIG,
+							EN_4		=> EN_4_SIG,
+							STORE_MASK	=> STORE_MASK,
+							LOAD_TYPE	=> LOAD_TYPE,
+							SEL		=> SEL_SIG,
+							DATA_IN_IRAM	=> DATA_IN_INSTR,
+							DATA_IN_MEM	=> DATA_IN_MEM,
+							DATA_OUT_MEM	=> DATA_OUT_MEM,
+							ADDR_MEM	=> ADDR_MEM,
+							INSTR_CACHE_H_M	=> INSTR_CACHE_H_M,
+							ADDR_IRAM	=> ADDR_INSTR,
+							INSTR		=> INSTR_SIG,
+							STALL		=> STALL,
+							WRONG_FETCH	=> WRONG_FETCH);
+
+end ALU_PUSH; 
+
+configuration CFG_DLX_ALUPUSH of DLX is
+	for ALU_PUSH
+		for all: DATAPATH
+			use configuration WORK.CFG_DATAPTH_RTL;
+		end for;
+		for all: FSM_CU
+			use configuration WORK.CFG_FSM_CU_FSM;
+		end for;
+	end for;
+end CFG_DLX_ALUPUSH;
